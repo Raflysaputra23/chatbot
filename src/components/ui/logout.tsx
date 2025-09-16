@@ -25,8 +25,8 @@ const Logout = () => {
             </DialogTrigger>
             <DialogContent>
                 <DialogHeader>
-                    <DialogTitle>Keluar</DialogTitle>
-                    <DialogDescription>
+                    <DialogTitle className='text-start'>Keluar</DialogTitle>
+                    <DialogDescription className='text-start'>
                        Apakah anda yakin ingin keluar dari akun?
                     </DialogDescription>
                     <DialogDescription className='p-2 w-full flex justify-end'>

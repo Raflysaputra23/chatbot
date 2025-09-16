@@ -42,7 +42,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${poppins.className} antialiased h-screen w-screen bg-[url('/background.jpg')] bg-cover bg-center overflow-hidden `}
+        className={`${poppins.className} antialiased h-screen w-screen bg-[url('/background.jpg')] bg-cover bg-center overflow-x-hidden`}
       >
         <AuthProvider>
           {children}
