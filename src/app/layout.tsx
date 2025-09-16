@@ -35,8 +35,7 @@ export const metadata: Metadata = {
 };
 
 export default function RootLayout({
-  children,
-  aside
+  children
 }: Readonly<{
   children: React.ReactNode;
   aside: React.ReactNode
@@ -44,13 +43,10 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${poppins.className} antialiased h-screen bg-slate-50 overflow-hidden grid grid-cols-1 lg:grid-cols-[250px_1fr] gap-3 p-3`}
+        className={`${poppins.className} antialiased h-screen w-screen bg-[url('/background.jpg')] bg-cover bg-center overflow-hidden `}
       >
         <AuthProvider>
-          {aside}
-          <div className="h-full rounded-md bg-slate-300 shadow-md flex flex-col p-3 lg:px-20 overflow-hidden">
-            {children}
-          </div>
+          {children}
         </AuthProvider>
       </body>
     </html>

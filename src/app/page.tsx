@@ -1,14 +1,12 @@
-import Body from "@/components/ui/body"
-import Header from "@/components/ui/header"
-
-
+import Auth from "@/components/ui/auth";
 
 const Home = () => {
+
+
   return (
-    <>
-      <Header />
-      <Body />
-    </>
+    <div className="h-full w-full flex justify-center items-center">
+      <Auth />
+    </div>
   )
 }
 

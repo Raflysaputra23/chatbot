@@ -7,9 +7,17 @@ import { onAuthStateChanged, User } from "firebase/auth";
 import { createContext, useContext, useEffect, useState } from "react";
 
 
+interface AuthUser {
+    uid: string;
+    username: string;
+    email: string;
+    emailVerified: boolean;
+    photoURL: string;
+    tokenId: string
+}
 
 type AuthContextType = {
-    user: User | null;
+    user: AuthUser | null;
     loading: boolean;
 };
 
@@ -25,7 +33,10 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
     useEffect(() => {
         const unsub = onAuthStateChanged(auth, async (user) => {
             if (user) {
-                setUser(user);
+                const dataUser = await getDataById("users", user.uid);
+                if(dataUser.status) {
+                    setUser({...dataUser.data, tokenId: user.getIdToken()});
+                }
             } else {
                 setUser(null);
             }

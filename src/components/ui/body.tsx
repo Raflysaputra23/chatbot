@@ -38,11 +38,11 @@ const Body = memo(({ token = "" }: { token?: string }) => {
                 const nowData = chats.filter((data: ChatType) => data.token === token);
                 if (nowData.length > 0) {
                     setHistoryNow(nowData[0].history);
-                    setUrl(`/c/${nowData[0].token}`);
+                    setUrl(`/dashboard/${nowData[0].token}`);
                 } else {
                     MixinAlert("error", `Token ${token} Invalid!`);
-                    router.push("/");
-                    setUrl("/");
+                    router.push("/dashboard");
+                    setUrl("/dashboard");
                 }
             }
         });
@@ -81,7 +81,7 @@ const Body = memo(({ token = "" }: { token?: string }) => {
                 await addData("chats", { chats: [newData] }, user.uid);
             }
 
-            const uid = await user.getIdToken();
+            const uid = await user.tokenId;
             const response = await fetch(`/api/chat`, {
                 method: "POST",
                 headers: {
@@ -98,7 +98,7 @@ const Body = memo(({ token = "" }: { token?: string }) => {
             });
             const data = await response.json();
             if(data) {
-                if(url === "/") router.push(`/c/${tokenChat}`);
+                if(url === "/dashboard") router.push(`/dashboard/${tokenChat}`);
             }
             setInput("");
             setWait(false);
@@ -115,7 +115,7 @@ const Body = memo(({ token = "" }: { token?: string }) => {
                 </div> : historyNow.length > 0 ? historyNow.map((part, index: number) =>
                     <ChatMessage key={index} part={part} isLast={index === historyNow.length - 1} divRef={divRef} />
                 ) : <div className="m-auto flex flex-col items-center gap-3">
-                    <span className="text-2xl font-bold">Apa yang ingin kamu tanyakan?</span>
+                    <span className="text-2xl font-bold text-center">Apa yang ingin kamu tanyakan?</span>
                 </div>}
             </main>
             <footer className="rounded-md flex justify-between items-center gap-2 pt-2">
