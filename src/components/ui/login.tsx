@@ -15,11 +15,13 @@ const Login = () => {
     const loginWithGoogle = async () => {
         try {
             const result = await signInWithPopup(auth, googleProvider);
+            console.log(result)
             if(result.user) {
                 // CEK USER
                 const user = await getDataById("users", result.user.uid);
                 if(!user.status) {
-                    const response = await addData("users", result.user, result.user.uid);
+                    const newUser = { ...result.user};
+                    const response = await addData("users", newUser, result.user.uid);
                     if (response.status) {
                         MixinAlert("success", "Login Success!");
                     } else {
