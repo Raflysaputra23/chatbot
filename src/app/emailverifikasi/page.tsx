@@ -32,7 +32,7 @@ const EmailVerifikasi = () => {
         }
     }
     return (
-        <div className="h-full w-full flex justify-center items-center">
+        <div className="h-full flex justify-center items-center w-[400px] max-w-[95%] mx-auto">
             <div className="p-6 bg-white/30 backdrop-blur-md shadow rounded-md flex flex-col gap-5 items-center w-max-[95%] w-96">
                 <h1 className="font-bold text-2xl">Verifikasi Email</h1>
                 <p className="text-sm text-slate-600 text-center">Silahkan cek email anda untuk melakukan verifikasi email</p>

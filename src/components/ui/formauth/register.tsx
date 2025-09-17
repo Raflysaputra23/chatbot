@@ -35,6 +35,8 @@ const Register = () => {
             if (user) {
                 if (user.emailVerified) {
                     router.push("/dashboard");
+                } else {
+                    router.push("/emailverifikasi");
                 }
             }
         });
@@ -59,7 +61,7 @@ const Register = () => {
             router.push("/emailverifikasi");
         } catch (error) {
             console.log(error);
-            MixinAlert("error", "Register gagal!");
+            MixinAlert("error", "Email sudah terdaftar!");
         }
     }
 

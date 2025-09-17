@@ -29,6 +29,8 @@ const Login = () => {
             if (user) {
                 if (user.emailVerified) {
                     router.push("/dashboard");
+                } else {
+                    router.push("/emailverifikasi");
                 }
             }
         });
@@ -52,7 +54,8 @@ const Login = () => {
         }
     }
 
-    const loginWithGoogle = async () => {
+    const loginWithGoogle = async (e: FormEvent) => {
+        e.preventDefault();
         try {
             const result = await signInWithPopup(auth, googleProvider);
             if (result.user) {
@@ -66,6 +69,7 @@ const Login = () => {
                         emailVerified: result.user.emailVerified,
                         photoURL: result.user.photoURL
                     }
+
                     const response = await addData("users", dataUser, result.user.uid);
                     if (response.status) {
                         MixinAlert("success", "Login Success!");
@@ -90,7 +94,7 @@ const Login = () => {
             </section>
             <form onSubmit={login} className='space-y-5'>
                 <div>
-                    <label htmlFor="email" className='mb-1 inline-block'>email</label>
+                    <label htmlFor="email" className='mb-1 inline-block'>Email</label>
                     <Input onChange={(e) => setEmail(e.target.value)} value={email} type="email" name="email" id="email" className='bg-white focus-visible:ring-2 focus-visible:ring-sky-300' placeholder='Masukan email anda' autoComplete='off' />
                 </div>
                 <div>
