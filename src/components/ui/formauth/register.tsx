@@ -46,19 +46,21 @@ const Register = () => {
         e.preventDefault();
         try {
             const response = await createUserWithEmailAndPassword(auth, email, password);
-            const user = response.user;
-            const dataUser = {
-                uid: user.uid,
-                username: username,
-                email: user.email,
-                emailVerified: user.emailVerified,
-                photoURL: user.photoURL
+            if(response) {
+                const user = response.user;
+                const dataUser = {
+                    uid: user.uid,
+                    username: username,
+                    email: user.email,
+                    emailVerified: user.emailVerified,
+                    photoURL: user.photoURL
+                }
+    
+                await addData("users", dataUser, user.uid);
+                await sendEmailVerification(user);
+                MixinAlert("success", "Verifikasi email telah dikirim!");
+                router.push("/emailverifikasi");
             }
-
-            await addData("users", dataUser, user.uid);
-            await sendEmailVerification(user);
-            MixinAlert("success", "Verifikasi email telah dikirim!");
-            router.push("/emailverifikasi");
         } catch (error) {
             console.log(error);
             MixinAlert("error", "Email sudah terdaftar!");

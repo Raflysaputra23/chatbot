@@ -53,7 +53,7 @@ const Aside = () => {
                 <div className='text-xs text-slate-100 py-4 flex gap-2 items-center'><span className='font-bold bg-slate-950 p-2 rounded-md'>History</span> <hr className='w-full border border-slate-400' /></div>
                 <section className='space-y-1 max-h-[430px] py-1 overflow-y-auto'>
                     {history.map((chat: {token: string, firstHistory: string}) => (
-                        <Link key={chat.token} href={`/dashboard/${chat.token}`} className={`${url.includes(`/dashboard/${chat.token}`) ? "bg-slate-400" : ""} text-sm p-2 bg-slate-200 border border-slate-400 inline-block w-full rounded-md`}>{chat.firstHistory}</Link>
+                        <Link key={chat.token} href={`/dashboard/${chat.token}`} className={`${url.includes(`/dashboard/${chat.token}`) ? "bg-slate-400" : ""} text-sm p-2 bg-slate-200 border border-slate-400 inline-block w-full rounded-md truncate`}>{chat.firstHistory}</Link>
                     ))}
                 </section>
             </section>

@@ -43,7 +43,7 @@ const ChatMessage = memo(({ part, isLast, divRef }: any) => {
                         },
                         code({ inline, className, children, ...props }: any) {
                             return !inline ? (
-                                <code className={`${className} font-mono !overflow-x-auto`} {...props}>
+                                <code className={`${className} !font-semibold !overflow-x-auto`} {...props}>
                                     {children}
                                 </code>
                             ) : (
@@ -77,7 +77,22 @@ const ChatMessage = memo(({ part, isLast, divRef }: any) => {
                                     {children}
                                 </td>
                             )
-                        }
+                        },
+                        ul({children}) {
+                            return (
+                                <ul className="!list-disc !list-inside !p-3">
+                                    {children}
+                                </ul>
+                            )
+                        },
+                        ol({ children }) {
+                            return (
+                                <ol className="!list-decimal !list-inside !p-2">
+                                    {children}
+                                </ol>
+                            )
+                        },
+                        
                     }}>
                     {part.parts[0].text}
                 </ReactMarkdown>
