@@ -25,7 +25,7 @@ const Body = memo(({ token = "" }: { token?: string }) => {
     const [wait, setWait] = useState<boolean>(false);
     const [history, setHistory] = useState<ChatType[]>([]);
     const [historyNow, setHistoryNow] = useState<History[]>([]);
-    const [url, setUrl] = useState<string>("/");
+    const [url, setUrl] = useState<string>("/dashboard");
     const divRef = useRef<HTMLDivElement>(null);
     const router = useRouter();
 
