@@ -99,11 +99,11 @@ const Login = () => {
             <form onSubmit={login} className='space-y-5'>
                 <div>
                     <label htmlFor="email" className='mb-1 inline-block'>Email</label>
-                    <Input onChange={(e) => setEmail(e.target.value)} value={email} type="email" name="email" id="email" className='bg-white focus-visible:ring-2 focus-visible:ring-sky-300' placeholder='Masukan email anda' autoComplete='off' />
+                    <Input onChange={(e) => setEmail(e.target.value)} value={email} type="email" name="email" id="email" className='bg-white focus-visible:ring-2 placeholder:text-sm focus-visible:ring-sky-300' placeholder='Masukan email anda' autoComplete='off' />
                 </div>
                 <div>
                     <label htmlFor="password" className='mb-1 inline-block'>Password</label>
-                    <Input onChange={(e) => setPassword(e.target.value)} value={password} type="password" name="password" id="password" className='bg-white focus-visible:ring-2 focus-visible:ring-sky-300' placeholder='Masukan password anda' />
+                    <Input onChange={(e) => setPassword(e.target.value)} value={password} type="password" name="password" id="password" className='bg-white focus-visible:ring-2 placeholder:text-sm focus-visible:ring-sky-300' placeholder='Masukan password anda' />
                 </div>
                 <div className='flex items-center gap-5'>
                     <Button type='submit' disabled={disabledButton} className='bg-sky-500 flex-1 hover:bg-sky-600 cursor-pointer shadow'>Masuk</Button>
