@@ -22,6 +22,8 @@ const EmailVerifikasi = () => {
                     MixinAlert("success", "Verifikasi email berhasil!");
                     router.push("/");
                 }
+            } else {
+                router.push("/");
             }
         });
     }, [router]);
