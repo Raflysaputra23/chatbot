@@ -108,7 +108,7 @@ const Body = memo(({ token = "" }: { token?: string }) => {
 
     return (
         <>
-            <main className="flex-1 py-2 flex flex-col overflow-y-auto gap-10 overflow-x-hidden">
+            <main className="flex-1 py-2 flex flex-col overflow-y-auto overscroll-auto gap-10 overflow-x-hidden">
                 {loading ? <div className="m-auto flex flex-col items-center gap-3">
                     <Loader size={50} className="animate-spin" />
                     <span className="text-xl">Inisialisasi Data</span>

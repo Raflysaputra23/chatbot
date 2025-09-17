@@ -32,7 +32,7 @@ const Dashboard = ({ params } : { params: Promise<{ token: string[] }> }) => {
     }, [param]);
 
     return (
-        <div className="h-full w-full grid grid-cols-1 lg:grid-cols-[250px_1fr] gap-3 overflow-y-auto overflow-x-hidden lg:p-4">
+        <div className="h-full w-full grid grid-cols-1 lg:grid-cols-[250px_1fr] gap-3 overflow-y-auto overflow-x-hidden overscroll-contain lg:p-4">
             <Aside />
             <section className="flex flex-col h-full overflow-hidden p-4 lg:px-20 bg-white/30 backdrop-blur-md rounded-md shadow">
                 <Header />

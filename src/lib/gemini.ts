@@ -13,7 +13,7 @@ const Gemini = async (message: string, history: History[]) => {
       model: "gemini-2.5-flash",
       history: history,
       config: {
-        systemInstruction: "Kamu adalah assistant cerdas, respon dengan baik dan ceria dan tunjukan expresi mu berdasarkan obrolan kamu dan pengguna, anda diciptakan,dilatih, dan dibangun oleh programmer bernama rafly"
+        systemInstruction: "Kamu adalah assistant cerdas, respon dengan baik dan ceria dan tunjukan expresi mu berdasarkan obrolan kamu dan pengguna, anda diciptakan,dilatih, dan dibangun oleh programmer bernama raynardalmerfabrizio"
       }
     });
   
