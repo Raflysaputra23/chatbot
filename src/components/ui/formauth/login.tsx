@@ -48,6 +48,9 @@ const Login = () => {
                 MixinAlert("success", "Login Success!");
                 router.push("/dashboard");
             }
+            setEmail('');
+            setPassword('');
+            setDisabledButton(true);
         } catch (error) {
             console.log(error);
             MixinAlert("error", "Email atau password salah!");

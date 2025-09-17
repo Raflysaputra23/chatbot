@@ -97,8 +97,10 @@ const Body = memo(({ token = "" }: { token?: string }) => {
                 })
             });
             const data = await response.json();
-            if(data) {
+            if(data.status) {
                 if(url === "/dashboard") router.push(`/dashboard/${tokenChat}`);
+            } else {
+                MixinAlert("error", "Bot tidak merespon, coba lagi!");
             }
             setInput("");
             setWait(false);
@@ -113,7 +115,7 @@ const Body = memo(({ token = "" }: { token?: string }) => {
                     <Loader size={50} className="animate-spin" />
                     <span className="text-xl">Inisialisasi Data</span>
                 </div> : historyNow.length > 0 ? historyNow.map((part, index: number) =>
-                    <ChatMessage key={index} part={part} isLast={index === historyNow.length - 1} divRef={divRef} />
+                    <ChatMessage key={index} part={part} isLast={index === historyNow.length - 1} divRef={divRef} wait={wait} />
                 ) : <div className="m-auto flex flex-col items-center gap-3">
                     <span className="text-2xl font-bold text-center">Apa yang ingin kamu tanyakan?</span>
                 </div>}

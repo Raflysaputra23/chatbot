@@ -61,6 +61,11 @@ const Register = () => {
                 MixinAlert("success", "Verifikasi email telah dikirim!");
                 router.push("/emailverifikasi");
             }
+            setUsername('');
+            setEmail('');
+            setPassword('');
+            setConfirmPassword('');
+            setDisabledButton(true);
         } catch (error) {
             console.log(error);
             MixinAlert("error", "Email sudah terdaftar!");

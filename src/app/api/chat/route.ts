@@ -45,9 +45,9 @@ export const POST = async (req: Request) => {
         await addData("chats", { chats: [newData] }, decoded.uid);
     }
 
-    return new Response(JSON.stringify({ message: "success" }), { status: 200 });
+    return new Response(JSON.stringify({ message: "success", status: true }), { status: 200 });
   } catch (error) {
     console.error(error);
-    return new Response(JSON.stringify({ message: "Invalid Token" }), { status: 401 });
+    return new Response(JSON.stringify({ message: "Invalid Token", status: false }), { status: 401 });
   }
 };
