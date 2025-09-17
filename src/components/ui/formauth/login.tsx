@@ -76,6 +76,7 @@ const Login = () => {
                     const response = await addData("users", dataUser, result.user.uid);
                     if (response.status) {
                         MixinAlert("success", "Login Success!");
+                        router.push("/dashboard");
                     } else {
                         MixinAlert("error", "Login Gagal!");
                     }
