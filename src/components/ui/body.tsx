@@ -5,7 +5,7 @@ import { memo, useCallback, useEffect, useRef, useState } from "react";
 import { addData, getLiveDataById } from "@/lib/database";
 import ChatInput from "./chatInput";
 import ChatMessage from "./chatMessage";
-import { Loader } from "lucide-react";
+import { Loader, Loader2 } from "lucide-react";
 import { MixinAlert } from "@/lib/alert";
 import { useRouter } from "next/navigation";
 
@@ -115,7 +115,10 @@ const Body = memo(({ token = "" }: { token?: string }) => {
                     <Loader size={50} className="animate-spin" />
                     <span className="text-xl">Inisialisasi Data</span>
                 </div> : historyNow.length > 0 ? historyNow.map((part, index: number) =>
-                    <ChatMessage key={index} part={part} isLast={index === historyNow.length - 1} divRef={divRef} wait={wait} />
+                <>
+                <ChatMessage key={index} part={part} isLast={index === historyNow.length - 1} divRef={divRef} />
+                {(index === historyNow.length - 1) && wait && <p ref={(index === historyNow.length - 1) ? divRef : null} className="flex items-center gap-2 font-semibold">Sedang mengetik <Loader2 size={20} className="animate-spin" /></p>}
+                </>
                 ) : <div className="m-auto flex flex-col items-center gap-3">
                     <span className="text-2xl font-bold text-center">Apa yang ingin kamu tanyakan?</span>
                 </div>}

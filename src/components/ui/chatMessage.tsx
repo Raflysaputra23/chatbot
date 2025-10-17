@@ -8,7 +8,7 @@ import rehypeHighlight from "rehype-highlight";
 import { MixinAlert } from "@/lib/alert";
 import { Loader } from "lucide-react";
 
-const ChatMessage = memo(({ part, isLast, divRef, wait }: any) => {
+const ChatMessage = memo(({ part, isLast, divRef }: any) => {
     const copy = async (text: any) => {
         const nav = navigator.clipboard;
         const filtered = text.props.node.children.map((child: any) => child.children.map((c: any) => c.value));
@@ -27,7 +27,6 @@ const ChatMessage = memo(({ part, isLast, divRef, wait }: any) => {
     if (part.role === "user") {
         return (
             <div className="flex items-center self-end max-w-11/12 lg:max-w-2/3 gap-5">
-                {wait && isLast && <Loader className="animate-spin" />}
                 <div ref={isLast ? divRef : null} className="bg-slate-900 p-3 rounded-md">
                     <p className="text-sm text-slate-50">{part.parts[0].text}</p>
                 </div>

@@ -1,8 +1,7 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import app from "./firebase";
-import { addDoc, collection, deleteDoc, doc, getDoc, getDocs, getFirestore, onSnapshot, setDoc, updateDoc } from "firebase/firestore";
+import { db } from "./firebase";
+import { collection, deleteDoc, doc, getDoc, getDocs, onSnapshot, setDoc, updateDoc } from "firebase/firestore";
 
-const db = getFirestore(app);
 
 const col = (dbName: string) => {
     return collection(db, dbName);
@@ -59,17 +58,19 @@ const getData = async (docName: string) => {
 }
 
 const getLiveDataById = (id: string, docName: string, callback: (data: []) => void) => {
-    const docRef = doc(col(docName), id);
-
-    const unsubcribe = onSnapshot(docRef, (doc) => {
-        if(doc.exists()) {
-            callback(doc.data().chats);
-        } else {
-            callback([]);
-        }
-    });
-
-    return unsubcribe;
+    try {
+        const docRef = doc(col(docName), id);
+        const unsubcribe = onSnapshot(docRef, (doc) => {
+            if(doc.exists()) {
+                callback(doc.data().chats);
+            } else {
+                callback([]);
+            }
+        });
+        return unsubcribe;
+    } catch(error) {
+        console.log(error);
+    }
 }
 
 const getDataById = async (docName: string, id: string) => {

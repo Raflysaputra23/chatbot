@@ -3,7 +3,7 @@
 
 import { auth } from "@/lib/auth";
 import { getDataById } from "@/lib/database";
-import { onAuthStateChanged, User } from "firebase/auth";
+import { onAuthStateChanged } from "firebase/auth";
 import { createContext, useContext, useEffect, useState } from "react";
 
 
