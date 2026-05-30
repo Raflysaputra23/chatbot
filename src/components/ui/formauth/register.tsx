@@ -37,25 +37,38 @@ const Register = () => {
     const daftar = async (e: FormEvent) => {
         e.preventDefault();
         setLoading(true);
+        let user;
         try {
             const response = await createUserWithEmailAndPassword(auth, email, password);
-            if (response) {
-                const user = response.user;
-                const dataUser = {
-                    uid: user.uid,
-                    username: username,
-                    email: user.email,
-                    emailVerified: user.emailVerified,
-                    photoURL: user.photoURL
-                };
-                await addData("users", dataUser, user.uid);
-                await sendEmailVerification(user);
-                MixinAlert("success", "Verifikasi email telah dikirim! 📧");
-                router.push("/emailverifikasi");
-            }
+            user = response.user;
+        } catch (error: any) {
+            console.error("Registrasi gagal:", error);
+            const msg = error.code === "auth/email-already-in-use"
+                ? "Email sudah terdaftar!"
+                : "Gagal membuat akun. Silakan coba lagi.";
+            MixinAlert("error", msg);
+            setLoading(false);
+            return;
+        }
+
+        try {
+            const dataUser = {
+                uid: user.uid,
+                username: username,
+                email: user.email,
+                emailVerified: user.emailVerified,
+                photoURL: user.photoURL
+            };
+            await addData("users", dataUser, user.uid);
+            await sendEmailVerification(user);
+            MixinAlert("success", "Verifikasi email telah dikirim! 📧");
+            router.push("/emailverifikasi");
             setUsername(''); setEmail(''); setPassword(''); setConfirmPassword('');
-        } catch {
-            MixinAlert("error", "Email sudah terdaftar!");
+        } catch (error: any) {
+            console.error("Gagal mengirim email verifikasi:", error);
+            MixinAlert("warning", "Akun berhasil didaftarkan, namun gagal mengirim email verifikasi otomatis. Silakan kirim ulang dari halaman verifikasi.");
+            router.push("/emailverifikasi");
+            setUsername(''); setEmail(''); setPassword(''); setConfirmPassword('');
         } finally {
             setLoading(false);
         }
