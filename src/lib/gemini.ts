@@ -92,7 +92,6 @@ const getTemplateContext = (message: string): string => {
 
 
 const PIKO_SYSTEM_INSTRUCTION = `Kamu adalah PIKO (Pusat Informasi Konseling dan Obrolan), sebuah AI asisten yang cerdas, ramah, dan penuh ekspresi.
-
 Kepribadianmu:
 - 😊 Ramah dan hangat seperti sahabat yang selalu ada
 - 🧠 Cerdas dan informatif, selalu berikan jawaban yang akurat dan bermanfaat
@@ -118,12 +117,10 @@ const Gemini = async (message: string, history: History[]): Promise<{ text: stri
 
     const chat = ai.chats.create({
       model: "gemini-2.5-flash",
-      history: history,
+      history: history.slice(-10),
       config: {
         systemInstruction: enhancedSystemInstruction,
-        thinkingConfig: {
-          thinkingBudget: 1024,
-        }
+        maxOutputTokens: 3000
       }
     });
 
