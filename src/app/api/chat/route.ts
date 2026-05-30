@@ -25,9 +25,17 @@ export const POST = async (req: Request) => {
 
     const { oldHistory, newHistory, message, tokenChat, history } = await req.json();
 
-    // CEK CHATS
-    const response = await Gemini(message, oldHistory);
-    const part = { role: "model", parts: [{ text: response }] };
+    // Panggil Gemini
+    const result = await Gemini(message, oldHistory);
+
+    if (result.error) {
+      return new Response(
+        JSON.stringify({ message: result.error, status: false }),
+        { status: 200 }
+      );
+    }
+
+    const part = { role: "model", parts: [{ text: result.text }] };
     newHistory.push(part);
 
     if (history.length > 0) {
@@ -47,7 +55,10 @@ export const POST = async (req: Request) => {
 
     return new Response(JSON.stringify({ message: "success", status: true }), { status: 200 });
   } catch (error) {
-    console.error(error);
-    return new Response(JSON.stringify({ message: "Invalid Token", status: false }), { status: 401 });
+    console.error("[API Chat Error]", error);
+    return new Response(
+      JSON.stringify({ message: "Terjadi kesalahan pada server. Coba lagi.", status: false }),
+      { status: 200 }
+    );
   }
 };

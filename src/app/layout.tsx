@@ -5,30 +5,30 @@ import { AuthProvider } from "@/hook/useAuth";
 
 const poppins = Poppins({
   subsets: ["latin"],
-  weight: ["300"],
+  weight: ["300", "400", "500", "600", "700"],
+  variable: "--font-inter",
 });
 
 export const metadata: Metadata = {
-  title: "Chatbot AI",
-  description: "Chatbot AI adalah platform sistem informasi digital yang pintar",
+  title: "PIKO - Pusat Informasi Konseling dan Obrolan",
+  description: "PIKO adalah AI asisten cerdas yang ramah, siap membantu konseling dan obrolan sehari-hari.",
   keywords: [
-    "Chatbot AI",
-    "Chatbot",
+    "PIKO",
     "AI",
-    "Platform",
-    "Informasi",
-    "Digital",
-    "Sistem",
-    "Intelligent",
+    "Chatbot",
+    "Konseling",
+    "Pusat Informasi",
+    "Obrolan",
+    "Gemini",
+    "Asisten Pintar",
   ],
-  authors: [{ name: "Chatbot AI", url: "https://chatbot.ai" }],
-  creator: "Chatbot AI",
-  publisher: "Chatbot AI",
+  authors: [{ name: "Raynard Almer Fabrizio", url: "https://instagram.com/raynardalmer" }],
+  creator: "Raynard Almer Fabrizio",
+  publisher: "PIKO AI",
   openGraph: {
-    title: "Chatbot AI",
-    description: "Chatbot AI adalah platform sistem informasi digital yang pintar",
-    url: "https://chatbot.ai",
-    siteName: "Chatbot AI",
+    title: "PIKO - Pusat Informasi Konseling dan Obrolan",
+    description: "PIKO adalah AI asisten cerdas yang ramah, siap membantu konseling dan obrolan sehari-hari.",
+    siteName: "PIKO AI",
     locale: "id_ID",
     type: "website",
   },
@@ -40,9 +40,9 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html lang="id">
       <body
-        className={`${poppins.className} antialiased h-screen w-screen bg-[url('/background.jpg')] bg-cover bg-center overflow-x-hidden`}
+        className={`${poppins.variable} antialiased h-screen w-screen overflow-x-hidden`}
       >
         <AuthProvider>
           {children}

@@ -32,12 +32,20 @@ const Dashboard = ({ params } : { params: Promise<{ token: string[] }> }) => {
     }, [param]);
 
     return (
-        <div className="h-full w-full grid grid-cols-1 lg:grid-cols-[250px_1fr] gap-3 overflow-y-auto overflow-x-hidden overscroll-contain lg:p-4">
+        <div className="h-full w-full flex overflow-hidden" style={{ background: '#0d0f14' }}>
+            {/* Sidebar */}
             <Aside />
-            <section className="flex flex-col h-full overflow-hidden p-4 lg:px-20 bg-white/30 backdrop-blur-md rounded-md shadow">
+
+            {/* Main content area */}
+            <div className="flex-1 flex flex-col overflow-hidden">
                 <Header />
-                <Body token={token} />
-            </section>
+                <div
+                    className="flex-1 flex flex-col overflow-hidden"
+                    style={{ maxWidth: '900px', width: '100%', margin: '0 auto', alignSelf: 'stretch' }}
+                >
+                    <Body token={token} />
+                </div>
+            </div>
         </div>
     )
 }
